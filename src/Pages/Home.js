@@ -9,7 +9,7 @@ export default function Home() {
   const [produtos, setProdutos] = useState([]);
 
   async function getProdutos() {
-    await fetch('https://fakestoreapi.com/products', {
+    await fetch('http://10.139.75.14:5251/api/Objeto/GetAllObjeto/', {
       method: 'GET',
       headers: {
         'content-type': 'application/json'
@@ -31,7 +31,8 @@ export default function Home() {
           <Stories produtos={produtos} />
           <FlatList
             data={produtos}
-            renderItem={({ item }) => <Produto title={item.title} price={item.price} image={item.image} description={item.description} category={item.category} rating={item.rating} />}
+            renderItem={({ item }) => <Produto title={item.title} price={item.price} objetoFoto={item.objetoFoto} description={item.description} 
+            category={item.category} rating={item.rating} />}
             keyExtractor={(item) => item.id}
             contentContainerStyle={{ height: (produtos.length * 600) + 110 }}
           />
@@ -43,16 +44,18 @@ export default function Home() {
   )
 }
 const css = StyleSheet.create({
-  container: {
-    backgroundColor: "#191919",
-    flexGrow: 1,
-    color: "white",
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  text: {
-    color: "white"
-  },
+  container: 
+    {
+        flex: 1,
+        flexGrow: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        width: "100%",
+        backgroundColor: "#B0C4DE",
+    },
+    text: {
+        color: "white"
+    },
   stories: {
     width: "100%",
     height: 100

@@ -8,7 +8,7 @@ export default function Stories({produtos}) {
       data={produtos}
       renderItem={ ({item}) => 
         <View style={css.story}>
-          <Image source={{ uri: item.image}} style={css.image}/>
+          <Image source={{ uri: item.objetoFoto}} style={css.image}/>
         </View>
       }
       keyExtractor={ (item) => item.id }

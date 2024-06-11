@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, Image } from 'react-native'
 import React from 'react'
 
-export default function Produto({ title, image, description, price, category, rating }) {
+export default function Produto({ title, objetoFoto, description, price, category, rating }) {
     return (
         <View style={css.container}>
             <View style={css.boxTitle}>
@@ -9,7 +9,7 @@ export default function Produto({ title, image, description, price, category, ra
                 <Text style={css.title}>{title}</Text>
             </View>
             <View style={css.boxImage}>
-                <Image source={{ uri: image }} style={css.imagem}/>
+                <Image source={{ uri: objetoFoto }} style={css.imagem}/>
             </View>
             <View style={css.descriptionBox}>
                 <Text style={css.descriptionText}>{description}</Text>

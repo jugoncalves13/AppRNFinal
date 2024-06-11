@@ -1,17 +1,17 @@
 import { View, Text, StyleSheet } from 'react-native'
 import React from 'react'
 
-export default function Videos() {
-
+export default function Detalhes() {
   return (
     <View style={css.container}>
-      <Text style={css.text}>Videos</Text>
+      <Text style={css.text}>Detalhes</Text>
     </View>
+    
   )
 }
 const css = StyleSheet.create({
   container: {
-    backgroundColor: "#191919",
+    backgroundColor: "#B0C4DE",
     flexGrow: 1,
     color: "white",
     justifyContent: "center",

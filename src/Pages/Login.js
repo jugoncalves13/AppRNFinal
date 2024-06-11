@@ -16,10 +16,10 @@ export default function Login() {
 
     return (
         <ScrollView contentContainerStyle={css.container}>
-            <Image source={require("../../assets/logo.png")} style={css.logo} />
+            <Image source={require("../../assets/logopngRN.png")} style={css.logo} />
             <TextInput
                 inputMode="email"
-                placeholder="Email"
+                placeholder="Email do Usuário"
                 style={css.input}
                 value={email}
                 onChangeText={(digitado) => setEmail(digitado)}
@@ -55,10 +55,10 @@ const css = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         alignContent: "center",
-        backgroundColor: "#191919"
+        backgroundColor: "#B0C4DE"
     },
     logo: {
-        width: "60%",
+        width: "100%",
         resizeMode: "contain"
     },
     input: {
@@ -67,8 +67,8 @@ const css = StyleSheet.create({
         borderRadius: 10,
         marginBottom: 15,
         padding: 15,
-        backgroundColor: "#262626",
-        color: "white"
+        backgroundColor: "#4682B4",
+        color: "black"
     },
     forgot: {
         width: "90%",
@@ -77,7 +77,7 @@ const css = StyleSheet.create({
         alignItems: "flex-end",
     },
     forgotText: {
-        color: "#0195fd",
+        color: "black",
         fontWeight: "bold"
     },
     btnLogin: {
@@ -85,8 +85,8 @@ const css = StyleSheet.create({
         height: 50,
         borderWidth: 1,
         borderRadius: 10,
-        marginTop: 30,
-        backgroundColor: "#0195fd"
+        marginTop: 10,
+        backgroundColor: "black"
     },
     btnLoginText: {
         color: "white",
@@ -101,7 +101,7 @@ const css = StyleSheet.create({
         marginTop: 30
     },
     errorText: {
-        color: "white",
+        color: "black",
         textAlign: "center"
     }
 });
