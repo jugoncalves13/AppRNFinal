@@ -1,8 +1,10 @@
 import {Text, StyleSheet,  ScrollView, TextInput, TouchableOpacity, View} from 'react-native'
-import React, { useState } from 'react'
-
+import React, { useState, useContext } from 'react'
+import { AuthContext } from '../Context/AuthContext'
 
 export default function Inserir() {
+
+    const { setCadastro } = useContext( AuthContext )
     
     const[ nome, setNome ] = useState( "" );
     const [email, setEmail] = useState("");
@@ -11,10 +13,9 @@ export default function Inserir() {
     const [erro, setErro ] = useState(false);
     const [sucesso, setSucesso ] = useState(false);
     
-
     async function Cadastro()
     {
-        await fetch('http://10.139.75.14:5251/api/Usuario/GetAllUsuario' , {
+        await fetch('http://10.139.75.13:5251/api/Usuario/GetAllUsuario' , {
             method: 'POST',
             headers: {
                 'content-type' : 'application/json'
@@ -22,11 +23,9 @@ export default function Inserir() {
             body: JSON.stringify(
                 {
                     email: email,
-                    password: senha,
-                    name:{
-                        firstname: nome,
-                    },
-                    phone: telefone
+                    senha: senha,
+                    nome: nome,
+                    telefone: telefone
                 }
                 
             )
@@ -43,60 +42,54 @@ export default function Inserir() {
 
 
     return (
-
-        <ScrollView contentContainerStyle={css.container}>
-            {sucesso ? 
-            <Text style={css.sucessoText}>Obrigado por se cadastrar!</Text>
-        : 
-        <>
-            <TextInput
-             placeholder='Nome:'
-             placeholderTextColor="black"
-             style={css.input}
-             onChangeText={(digitado) => setNome(digitado) }
-             value={nome}
+        <ScrollView contentContainerStyle={{alignItems: 'center', justifyContent: 'center', 
+        height: '100%', backgroundColor: '#B0C4DE'}}>
            
+            <View style={css.caixatexto}>
+              <Text style={css.textcadastro}>Cadastre-Se</Text>
+            </View> 
+            { sucesso ? <Text>Cadastro Realizado!</Text> :
+            <> 
+            <TextInput style={css.input}
+                placeholder=" Nome" 
+                placeholderTextColor={'black'} 
+                onChangeText={(digitado) => setNome(digitado)} 
+                TextInput={nome}
             />
-             <TextInput
-            placeholder='Email'
-            placeholderTextColor="black"
-            onChangeText={(digitado) => setEmail(digitado) }
-            value={email}
-            style={css.input}
+            <TextInput style={css.input}
+                placeholder=" Telefone" 
+                placeholderTextColor={'black'} 
+                onChangeText={(digitado) => setTelefone(digitado)} 
+                TextInput={telefone}
             />
-             
-            <TextInput
-             placeholder='Senha'
-             placeholderTextColor="black"
-             onChangeText={(digitado) => setSenha(digitado) }
-             value={senha}
-             style={css.input}
+            <TextInput style={css.input}
+                placeholder=" Email" 
+                placeholderTextColor={'black'} 
+                onChangeText={(digitado) => setEmail(digitado)} 
+                TextInput={email}
             />
-            <TextInput
-             placeholder='Telefone:'
-             placeholderTextColor="black"
-             style={css.input}
-             onChangeText={(digitado) => setTelefone(digitado) }
-             value={telefone}
+            <TextInput style={css.input}
+                placeholder=" Senha" 
+                placeholderTextColor={'black'} 
+                onChangeText={(digitado) => setSenha(digitado)} 
+                TextInput={senha}
             />
-            
-            <TouchableOpacity style={css.btnCadastrar} onPress={Cadastro}>
-                <Text style={css.btnText}>CADASTRAR</Text>
-            </TouchableOpacity>
-            {erro && 
-            <View style={css.error} >
-                <Text style={css.errorText}>Revise os campos. Tente novamente!</Text>
-            </View>
-            }
             </> 
-        }
+            }
+            { erro && <Text>ERRADO</Text>}
+    
+          <TouchableOpacity style={css.btnLogin} onPress={Cadastro}>
+            <Text style={css.btnText}>Realizar Cadastro</Text>
+            </TouchableOpacity>
+          <TouchableOpacity style={css.btnCadastrar} onPress={() => setCadastro( false ) }>
+            <Text style={css.btnText} >Voltar para o Login</Text>
+            </TouchableOpacity>
         </ScrollView>
-        
-    )
-}
+      )
+    }
+    
 const css = StyleSheet.create({
-    container: 
-    {
+    container: {
         flexGrow: 1,
         width: "100%",
         backgroundColor: "#B0C4DE",
@@ -115,20 +108,23 @@ const css = StyleSheet.create({
     btnCadastrar: {
         width: "80%",
         height: 50,
-        backgroundColor: "#E6E6FA",
+        backgroundColor: "black",
+        borderRadius: 5,
+        marginBottom: 10
+    },
+    btnLogin: {
+        width: "80%",
+        height: 50,
+        backgroundColor: "black",
         borderRadius: 5,
         marginBottom: 10
     },
     btnText: {
         fontSize: 15,
         lineHeight: 50,
-        color: "black",
-        fontWeight: "bold",
-        textAlign: "center"
-    },
-    errorText: {
         color: "white",
         fontWeight: "bold",
+        textAlign: "center"
     },
     sucessoText: {
         fontWeight: "bold",

@@ -6,11 +6,10 @@ import { useContext } from 'react';
 import { AuthContext } from '../Context/AuthContext';
 
 import Home from '../Pages/Home';
-import Busca from '../Pages/Busca';
+
 import Login from '../Pages/Login';
 import Inserir from '../Pages/Inserir';
-import Detalhes from '../Pages/Detalhes';
-
+import Observacao from '../Pages/Observacao';
 
 const Tab = createBottomTabNavigator();
 
@@ -44,30 +43,20 @@ export default function Rotas() {
                     }}
                 />
                 <Tab.Screen
-                    name="Busca"
-                    component={Busca}
-                    options={{
-                        tabBarIcon: ({ color, size }) => (
-                            <MaterialCommunityIcons name="magnify" color={color} size={size} />
-                        ),
-                    }}
-
-                />
-                <Tab.Screen
                     name="Inserir"
                     component={Inserir}
                     options={{
                         tabBarIcon: ({ color, size }) => (
-                            <MaterialCommunityIcons name="eye-plus-outline" color={color} size={size} />
+                            <MaterialCommunityIcons name="account" color={color} size={size} />
                         ),
                     }}
                 />
                 <Tab.Screen
-                    name="Detalhes"
-                    component={Detalhes}
+                    name="Observacao"
+                    component={Observacao}
                     options={{
                         tabBarIcon: ({ color, size }) => (
-                            <MaterialCommunityIcons name="account-details" color={color} size={size} />
+                            <MaterialCommunityIcons name="folder-alert" color={color} size={size} />
                         ),
                     }}
                 />
