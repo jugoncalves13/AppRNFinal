@@ -41,7 +41,7 @@ export default function Observacao() {
           .then((response)=> response.json())        
           .then(json=>{
             setObservacoesId(json.observacoesId);
-            setObservacoesLocal(json.observacpesLocal);
+            setObservacoesLocal(json.observacoesLocal);
             setObservacoesData(json.observacoesData);
             setObservacoesDescricao(json.observacoesDescricao);
             setObjetoId(json.objetoId);
@@ -50,15 +50,15 @@ export default function Observacao() {
     }
 
 
-    async function editObservacao()
+    async function editObservacao(observacoesId)
     {    
+      console.log(objetoId);
       await fetch('http://10.139.75.13:5251/api/Observacoes/UpdateObservacoes/' + observacoesId,{
               method: 'PUT',
               headers: {
                   'Content-type' : 'application/json; charset=UTF-8',
               },
-              body: JSON.stringify({
-                observacoesId: observacoesId,
+              body: JSON.stringify({               
                 observacoesLocal: observacoesLocal,
                 observacoesData: observacoesData,
                 observacoesDescricao: observacoesDescricao,
@@ -173,8 +173,7 @@ export default function Observacao() {
     placeholderTextColor="black"   
     />
     <TextInput
-    inputMode="text"
-    secureTextEntry={true}
+    inputMode="text" 
     style={css.input}
     value={observacoesDescricao}
     onChangeText={(digitado)=> setObservacoesDescricao(digitado)}
@@ -182,21 +181,12 @@ export default function Observacao() {
     />
     <TextInput
     inputMode="text"
-    secureTextEntry={true}
-    style={css.input}
-    value={objetoId}
-    onChangeText={(digitado)=> setObjetoId(digitado)}
-    placeholderTextColor="black"    
-    />
-    <TextInput
-    inputMode="text"
-    secureTextEntry={true}
     style={css.input}
     value={usuarioId}
     onChangeText={(digitado)=> setUsuarioId(digitado)}
     placeholderTextColor="black"    
     />
-    <TouchableOpacity styele={css.btnCreate} onPress={()=>editObservacao()}>
+    <TouchableOpacity styele={css.btnCreate} onPress={()=>editObservacao(observacoesId)}>
       <Text styel={css.btnText}>SALVAR</Text>
     </TouchableOpacity>
   </View>

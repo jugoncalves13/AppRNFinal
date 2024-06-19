@@ -15,29 +15,28 @@ export default function Inserir() {
     
     async function Cadastro()
     {
-        await fetch('http://10.139.75.13:5251/api/Usuario/GetAllUsuario' , {
+        await fetch('http://10.139.75.13:5251/api/Usuario/CreateUsuario' , {
             method: 'POST',
             headers: {
                 'content-type' : 'application/json'
             },
             body: JSON.stringify(
                 {
-                    email: email,
-                    senha: senha,
-                    nome: nome,
-                    telefone: telefone
+                    usuarioEmail: email,
+                    usuarioSenha: senha,
+                    usuarioNome: nome,
+                    usuarioTelefone: telefone
                 }
                 
             )
            
         })
         .then( res => (res.ok == true) ? res.json () : false)
-        .then(json =>{
-            setSucesso((json.id) ? true : false);
-            setErro((json.id) ? false : true);
-
+        .then(json =>{            
+            setSucesso((json.usuarioId) ? true : false);
+            setErro((json.usuarioId) ? false : true);
         } )
-        .catch(err => console.log(true))
+        .catch(err => console.log(err))
     }
 
 
